@@ -182,7 +182,7 @@ const LoginPage = () => {
           {showError && <p className='login__error'>{errorMessage}</p>}
 
 
-          <span className='login__details'>{signIn ? "Already on LinkedIn? " : "Already have an account? "}
+          <span className='login__details'>{signIn ? "New to LinkedIn? " : "Already have an account? "}
             <span className='login__state' onClick={() => !isSubmitting && setSignIn(signIn ? false : true)}>
               {signIn ? "Join Now" : "Sign In"}
             </span>
