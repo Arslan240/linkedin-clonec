@@ -1,0 +1,39 @@
+.loading__page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading__container img{
+    height: 40px;
+}
+
+
+.loading__bar {
+    width: 200px;
+    height: 4px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .loading__inside__bar {
+    width: 50%;
+    height: 100%;
+    background-color: var(--linkedin-blue);
+    position: absolute;
+    animation: loadingAnimation 2s infinite;
+  }
+  
+  @keyframes loadingAnimation {
+    0%, 100% {
+      left: -20%
+    }
+    50% {
+      left: 80%;
+    }
+  }
+
+

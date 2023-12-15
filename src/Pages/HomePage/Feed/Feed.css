@@ -1,0 +1,9 @@
+.feed__line{
+    color: rgb(226, 226, 226);
+    margin-bottom: 1rem;
+}
+
+.feed__loading__container{
+    display: flex;
+    justify-content: center;
+}

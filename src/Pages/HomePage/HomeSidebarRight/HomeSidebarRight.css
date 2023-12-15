@@ -1,0 +1,56 @@
+.sidebar__right {
+    display: none;
+    height: fit-content;
+    padding: var(--container-padding-inline);
+    background-color: white;
+    border: var(--container-border);
+    border-radius: var(--container-border-radius);
+    font-size: .8rem;
+}
+
+.right__topContainer{
+    margin-bottom: .9rem;
+}
+.topContainer__title{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.company {
+    display: flex;
+    gap: .7rem;
+}
+.company__details{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2rem;
+}
+.company__title{
+    font-size: .9rem;
+    font-weight: 600;
+    max-width: 90%;
+}
+.follow__button{
+    padding: .5rem .5rem;
+    border: 1px solid var(--text-gray);
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+    width: 75px;
+    font-size: .9rem;
+    margin-top: .4rem;
+    margin-bottom: .9rem;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+.follow__button:hover{
+    background-color: var(--container-hover-background);
+}
+
+@media screen and (min-width:990px) {
+    .sidebar__right{
+        display: block;
+    }
+}

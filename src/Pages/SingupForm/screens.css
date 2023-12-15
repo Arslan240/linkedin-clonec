@@ -1,0 +1,68 @@
+.screen__name{
+    height: 100%;
+}
+
+.signup__step__title{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.signup__screen__button, button{
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    margin-top: .7rem;
+    border-radius: var(--button-border-radius);
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.signup__screen__button:hover{
+    background-color: var(--linkedin-blue-hover);
+}
+
+.signup__screen__button:disabled{
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
+/* Second Step - COUNTRY, CITY */
+#signup__country,#signup__city{ 
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.asterik{
+    color: red;
+}
+
+/* Third Step - Job Title OR Student */
+.signup__student__dates{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.signup__student__date{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.signup__date_select{
+    width: 75px;
+    padding: 0.5rem;
+}
+
+
+.signup__student__optionBtn{
+    width: 100%;
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--text-gray);
+}
+
+.signup__student__optionBtn:hover{
+    background-color: lightgray;
+}

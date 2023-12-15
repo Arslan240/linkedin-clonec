@@ -1,0 +1,113 @@
+.login__page{
+    background-color: white;
+    height: 100vh;
+
+}
+
+
+.login__inputsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    font-weight: 600;
+    padding: 2rem;
+}
+
+.login__title{
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    max-width: 350px;
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: var(--container-border-radius);
+    background-color: white;
+}
+
+.login__form label{
+    
+}
+.login__form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: .5rem ;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.input__error {
+    border: 1px solid red;
+}
+
+
+.login__showPassword{
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: .1rem .5rem .1rem .1rem;   
+}
+#login__password {
+    border: none;
+    outline: none;
+    padding: none;
+}
+
+.login__icon{
+    cursor: pointer;
+    height: 35px;
+}
+
+.login__error{
+    font-size: .8rem;
+    font-weight: lighter;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
+    line-height: 18px;
+    color: red;
+}
+
+.login__submit__button{
+    background-color: var(--linkedin-blue);
+    color: white;
+    border: none;
+    padding: .7rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login__submit__button:hover{
+    cursor: pointer;
+}
+.login__submit__button:disabled{
+    cursor: default;
+    background-color: #5c98d5;
+}
+
+.login__details{
+    margin-top: .5rem;
+}
+
+.login__state{
+    cursor: pointer;
+    color: var(--linkedin-blue);
+}
+.login__state:hover{
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 500px) {
+    .login__form{
+        max-width: 300px;
+    }
+    .login__header{
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,26 @@
+.conns__page__left{
+    background-color: white;
+    border: var(--container-border);
+    border-radius: var(--container-border-radius);
+}
+
+.conns__page__top__section{
+    border-bottom: var(--container-border);
+    padding: var(--container-padding-inline);
+}
+
+.connections_title{
+    font-size: 1.3rem;
+}
+
+.conns__page__conns__section{
+    padding: var(--container-padding-inline);
+}
+
+/* TODO: apply border radius on larger screenwidths */
+
+@media only screen and (min-width: 855px) {
+    .conns__page__left{
+        flex: .7;
+    }
+}

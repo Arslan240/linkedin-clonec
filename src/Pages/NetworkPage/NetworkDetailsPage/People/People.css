@@ -1,0 +1,188 @@
+.network__page__people__container{
+    padding: var(--container-padding-inline) var(--container-padding-inline) .5rem var(--container-padding-inline);
+    border: var(--container-border);
+    border-radius: var(--container-border-radius);
+    background-color: white;
+    font-size: .8rem;
+    margin-bottom: .5rem;
+}
+
+.network__results__related__person{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-bottom: 1rem; */
+}
+.related__person__container{
+    display: flex;
+    align-items: center;
+}
+.related__person__name{
+    margin-left: .5rem;
+}
+.text__light{
+    color: var(--text-gray-light);
+}
+
+.network__results__actions__remove{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.actions_remove_icon {
+    padding: .20rem .15rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-gray-light);
+}
+
+.actions_remove_icon:hover{
+    background-color: var(--container-hover-background);
+}
+
+.network__results__linebreak{
+    margin-top: .8rem;
+    margin-bottom: .5rem;
+    height: 1px;
+    background-color: lightgray;
+}
+.break-first{
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.network__results__actual__user{
+    display: flex;
+    justify-content: space-between;
+    padding: .6rem 0rem .6rem 0rem ;
+    /* margin-bottom: .5rem; */
+    border-bottom: var(--container-border);
+}
+.network__results__actual__user:last-child{
+    border: none;
+}
+
+.network__results__actual__user__container{
+    display: flex;
+    gap: .5rem;
+}
+
+.network__results__user__details {
+    display: flex;
+    flex-direction: column;
+    gap: .05rem;
+}
+.network__results__user__title,
+.network__page__results__title,
+.network__page__results_seeAll{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.margin__nt {
+    margin-top: -.2rem;
+    color: var(--text-gray-light);
+}
+
+.network__results__text__body{
+    font-size: .9rem;
+    line-height: 20px;
+}
+
+/*  */
+.connect__message{
+    display: flex;
+    align-items: center;
+    gap: .5em; 
+    transition: transform 1s;
+    padding-inline: .3rem;
+}
+
+.network__page__results__actions{
+    display: flex;
+    justify-content: center;
+    gap: .7rem;
+}
+
+.network__page__results__action{
+    border: 1px solid var(--linkedin-blue);
+    align-self: flex-start;
+    padding: .5rem;
+    font-size: .9rem;
+    font-weight: 600;
+    border-radius: 3rem;
+    cursor: pointer;
+    color: var(--linkedin-blue);
+}
+.network__page__results__action:hover {
+    background-color: var(--linkedin-blue-light);
+}
+
+.network__page__results__options{
+    align-self: flex-start;
+    padding: .5rem;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+.network__page__results__options:hover{
+    background-color: var(--search-item-type-hover-color);
+}
+
+.network__page__three__dots{
+    display: flex;
+}
+
+.display_none{
+    display: none;
+}
+.display{
+    display: block;
+}
+
+.connections__page__remove__options{
+    background-color: white;
+    padding-block: .5rem;
+    border: var(--container-border);
+    border-radius: var(--container-border-radius);
+    margin-top: .5rem;
+    box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.16);
+    -webkit-box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.16);
+    -moz-box-shadow: 5px 5px 10px -1px rgba(0,0,0,0.16);
+}
+
+.connections__page__remove__connection{
+    padding-block: .5rem;
+    padding-inline: var(--container-padding-inline);
+    cursor: pointer;
+    font-weight: 600;
+}
+.connections__page__remove__connection:hover{
+    background-color: var(--search-item-type-hover-color);
+}
+
+.ignore__action{
+    color: var(--text-gray-light);
+    padding: .5rem 1rem;
+    border: var(--container-border);
+}
+.ignore__action:hover{
+    background-color: var(--search-item-type-hover-color);
+}
+
+.network__page__results_seeAll{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    display: flex;
+    justify-content: center;
+    color: var(--text-gray-light);
+    cursor: pointer;
+}
+.network__page__results_seeAll:hover {
+    background-color: var(--container-hover-background);
+}
+
+@media screen and (min-width:412px) {
+    .media__action__text{
+        display: block;
+    }
+}

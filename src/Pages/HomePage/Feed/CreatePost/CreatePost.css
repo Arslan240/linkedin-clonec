@@ -1,0 +1,82 @@
+.createPost{
+    background-color: white;
+    padding: .3rem var(--container-padding-inline);
+    padding-top:.7rem;
+    border-radius: var(--container-border-radius);
+    border: var(--container-border);
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+}
+
+.createPost__startContainer{
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+    justify-content: center;
+}
+.createPost__startPost{
+    /* min-width: 200px; */
+    max-width: 500px;
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+    background-color: white;
+    color: var(--text-gray-light);
+    cursor: pointer;
+    padding: 1rem .7rem;
+    margin-bottom: .5rem;
+    border: var(--container-border-dark);
+    border-radius: 45px;
+
+    transition: all 0.1s;
+
+    /* MODAL STYLES */
+    position: relative;
+    z-index: 1;
+}
+.createPost__startPost:hover{
+    background-color: var(--container-hover-background);
+}
+
+.createPost__mediaContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.media__type {
+    gap: .3rem;
+    font-weight: 600;
+    padding: .5rem .3rem;
+    flex: 1;
+    
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.1s;
+}
+.media__type:hover{
+    background-color: var(--container-hover-background);
+}
+
+.media__type > svg.photo{
+    color: var(--icon-photo);
+}
+.media__type > svg.video{
+    color: var(--icon-video);
+}
+.media__type > svg.event{
+    color: var(--icon-event);
+}
+.media__type > svg.article{
+    color: var(--icon-article);
+}
+
+@media screen and (min-width: 412px) {
+    .media__type{
+        gap: .5rem;
+        font-weight: 600;
+        padding: .7rem var(--container-padding-inline);
+        flex: none;
+    }
+}

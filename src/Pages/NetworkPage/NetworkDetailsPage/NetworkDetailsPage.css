@@ -1,0 +1,10 @@
+.feed__line{
+    color: rgb(226, 226, 226);
+    margin-bottom: 1rem;
+}
+
+.network__page__loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,237 @@
+.profile__page__main{
+    /* border: 1px solid; */
+    
+}
+
+
+.profile__page__section{
+    border: var(--container-border);
+    background-color: white;
+    margin-bottom: 1rem;
+}
+.profile__page__section:last-child{
+    margin-bottom: 0;
+}
+
+.profile__page__banner{
+    height: 60px;
+    background-color: bisque;
+    padding-top: .3rem;
+}
+
+.profile__page__cam_container{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1.2rem;
+}
+.profile__page__icon__container{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding: .5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 20px;
+}
+.profile__page__icon__container:hover{
+    background-color: var(--search-item-type-hover-color);
+}    
+
+
+
+.profile__page__not__banner{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    padding-inline: 1rem;
+    padding-block: .8rem;
+}
+
+.profile__page__edit__and__img_container{
+    display: flex;
+    justify-content: space-between;
+}
+.profile__page__profile__icon__container{
+    margin-top: -60px;
+}
+
+.profile__page__location,
+.profile__page__school__company__top{
+    color: var(--text-gray-light);
+}
+
+.profile__page__description{
+    font-size: 1rem;
+}
+
+.profile__page__name,
+.blue-bold{
+    font-weight:600;
+}
+
+.profile__page__name{
+    font-size: 1.5rem;
+}
+.blue-bold{
+    color: var(--linkedin-blue);
+}
+
+
+.profile__page__right{
+    display: none;
+}
+
+#profile__page__link{
+    color: var(--linkedin-blue);
+    font-size: .9rem;
+    width: fit-content;
+}
+#profile__page__link:hover{
+    color: var(--linkedin-blue);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ACTIVITY SECTION */
+.profile__page__activity__section{
+    padding-block: 0.8rem;
+}
+.profile__page__activity__container{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    border-bottom: var(--container-border);
+    padding-top: .6rem;
+    padding-inline: .3rem;
+}
+.profile__page__activity__container:first-of-type{
+    margin-top: .6rem;
+}
+.profile__page__activity__container:last-of-type{
+    border-bottom: 0;
+}
+.profile__page__activity__container:hover{
+    background-color: rgb(245, 245, 245);
+}
+.profile__page__activity__title__container{
+    display: flex;
+    justify-content: space-between;
+}
+.profile__page__activity__title{
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+/* Actual Post */
+
+.profile__page__post__link{
+    cursor: pointer;
+}
+.profile__page__post__link:hover{
+    
+}
+.profile__page__post__information{
+    /* margin-bottom: .5rem; */
+}
+.profile__page__actual__activity{
+    display: flex;
+    gap: 1rem;
+    padding-right: .2rem;
+    /* margin-bottom: .5rem; */
+}
+.profile__page__post__information__title{
+    font-weight: 600;
+}
+.profile__page__font__small{
+    font-size: .85rem;
+}
+
+.profile__page__activity__media{
+    border-radius: 20px;
+    height: 120px;
+    border: 1px solid;
+}
+.profile__page__activity__media > img{
+    border-radius: 19.5px;
+    height: 120px;
+    width: 120px;
+}
+.profile__page__activity__media > embed{
+    border-radius: 19.5px;
+    height: 120px;
+    width: 150px;
+}
+.profile__page__activity__media > video{
+    border-radius: 19.5px;
+    width: 120px;
+    height: 120px;
+}
+.profile__page__activity__description{
+    max-width: 245px;
+}
+.profile__page__post__reactions{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .6rem;
+}
+.profile__page__show__more__link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--linkedin-blue);
+}
+.profile__text__light{
+    color: var(--text-gray-light);
+}
+
+@media screen and (min-width: 600px) {
+    .profile__page__main{
+        flex: .7;
+    }
+    .profile__page__banner{
+        border-top-left-radius: 9.5px;
+        border-top-right-radius: 9.5px;
+    }
+    .profile__page__section{
+        border-radius: var(--container-border-radius);
+    }
+    .profile__page__banner{
+        height: 100px;
+    }
+    .profile__page__cam_icon{
+        margin-top: .7rem;
+    }
+    .profile__page__description__container{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .profile__page__name__description{
+        max-width: 300px;
+    }
+    .profile__page__school__company__top{
+        font-weight: 600;
+        margin-right: .5rem;
+        color: var(--text-gray-dark);
+    }
+}
+
+@media screen and (min-width:800px) {
+    .profile__page__banner{
+        height: 160px;
+    }
+
+    .profile__page__icon > svg{
+        height: 25;
+    }
+
+    .profile__page__profile__icon__container{
+        margin-top: -100px;
+    }
+
+}
+
+@media screen and (min-width: 995px){
+    .profile__page__name__description{
+        max-width: 400px;
+    }
+}

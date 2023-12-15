@@ -1,0 +1,13 @@
+.shared__container{
+    /* height: 100vh; */
+}
+
+.login__header{
+    padding: 1rem 2rem;
+}
+
+
+.login__imgContainer > img{
+    height: 25px;
+}
+

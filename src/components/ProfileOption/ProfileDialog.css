@@ -1,0 +1,54 @@
+.dialog__container {
+    padding: .5rem;
+    color: var(--text-gray-light);
+}
+
+.dialog__profile__container{
+    display: flex;
+    gap: .5rem;
+    color: var(--text-gray-dark);
+}
+.dialog__top__container a:link,
+.dialog__top__container a:hover,
+.dialog__top__container a:active,
+.dialog__top__container a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+
+.dialog__profile__title{
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.dialog__profile__description {
+    font-size: .9rem;
+    line-height: 20px;
+}
+
+.dialog__btn__link{
+    display: flex;
+    width: 100%;
+    margin-top: .7rem;
+}
+.dialog__view__profile__btn{
+    width: 100%;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    border: 1px solid var(--linkedin-blue);
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.dialog__view__profile__btn:hover{
+    background-color: var(--linkedin-blue);
+    color: white;
+}
+
+.dialog__signOut{
+    transition: all 0.1s;
+    cursor: pointer;
+}
+.dialog__signOut:hover{
+    text-decoration: underline;
+}

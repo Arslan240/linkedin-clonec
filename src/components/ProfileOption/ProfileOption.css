@@ -1,0 +1,107 @@
+
+
+/* ProfileOption */
+.profile__option{
+    margin: .3rem min(1.2vw, .8rem) .1rem min(1.2vw, .8rem);
+    position: relative;
+  }
+.profile__flex{
+    display: none;
+}
+.profile__dialog{
+  background-color: white;
+  width: 240px;
+  height: 270px;
+  margin-top: 20px;
+  margin-left: 120px;
+  z-index: 1;
+  border: var(--container-border);
+  border-radius: var(--container-border-radius);
+  box-shadow: 5px 9px 5px -4px rgba(77,77,77,0.32);
+  -webkit-box-shadow: 5px 9px 5px -4px rgba(77,77,77,0.32);
+  -moz-box-shadow: 5px 9px 5px -4px rgba(77,77,77,0.32);
+  transition: all 0.3s;
+}
+
+.active{
+  display: block;
+}
+.inactive{
+  display: none;
+}
+
+
+/* ----------------------------PROFILE DIALOG --------------------- */
+
+.dialog__container {
+  padding: .5rem;
+  color: var(--text-gray-light);
+}
+
+.dialog__profile__container{
+  display: flex;
+  gap: .5rem;
+  color: var(--text-gray-dark);
+}
+.dialog__top__container a:link,
+.dialog__top__container a:hover,
+.dialog__top__container a:active,
+.dialog__top__container a:visited{
+  text-decoration: none;
+  color: inherit;
+}
+
+.dialog__profile__title{
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.dialog__profile__description {
+  font-size: .9rem;
+  line-height: 20px;
+}
+
+.dialog__btn__link{
+  display: flex;
+  width: 100%;
+  margin-top: .7rem;
+}
+.dialog__view__profile__btn{
+  color: var(--text-gray-dark);
+  width: 100%;
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+  border: 1px solid var(--linkedin-blue);
+  border-radius: 20px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dialog__view__profile__btn:hover{
+  background-color: var(--linkedin-blue);
+  color: white;
+}
+
+.dialog__signOut{
+  transition: all 0.1s;
+  cursor: pointer;
+}
+.dialog__signOut:hover{
+  text-decoration: underline;
+}
+
+
+@media screen and (min-width: 600px){
+    .profile__flex{
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        margin-top: -2px;
+        cursor: pointer;
+    }
+    .profile__dialog{
+      width: 270px;
+      height: 300px;
+      margin-top: 15px;
+      margin-left: 0;
+    }
+}

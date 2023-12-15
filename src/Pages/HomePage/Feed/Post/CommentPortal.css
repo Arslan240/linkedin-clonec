@@ -1,0 +1,30 @@
+
+
+/* ProfileOption */
+/* .profile__option{
+    margin: .3rem min(1.2vw, .8rem) .1rem min(1.2vw, .8rem);
+    position: relative;
+  }
+.profile__flex{
+    display: none;
+} */
+.comment__dialog{
+  background-color: white;
+  width: 270px;
+  height: 300px;
+  margin-top: 15px;
+  z-index: 1;
+  border: var(--container-border);
+  border-radius: var(--container-border-radius);
+  box-shadow: 5px 9px 5px -4px rgba(77,77,77,0.32);
+  -webkit-box-shadow: 5px 9px 5px -4px rgba(77,77,77,0.32);
+  -moz-box-shadow: 5px 9px 5px -4px rgba(77,77,77,0.32);
+}
+
+.active{
+  display: block;
+}
+.inactive{
+  display: none;
+}
+

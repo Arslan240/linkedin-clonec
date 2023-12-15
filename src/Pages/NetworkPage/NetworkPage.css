@@ -1,0 +1,64 @@
+.networkPage {
+    /* display: flex; */
+    gap: 1.2rem;
+    max-width: var(--max-width-body-mobile);
+    margin-inline: auto;
+    margin-top: var(--main-container-margin-top);
+}
+
+.networkPage__results {
+    flex: 1;
+}
+
+
+.network__page__left{
+    margin-bottom: 1rem;
+}
+
+.networkPage__people__container{
+
+}
+
+@media screen and (min-width:800px) {
+    .networkPage{
+        display: flex;
+        max-width: var(--max-width-body-tablet);
+    }
+    .network__page__left{
+        display: block;
+        flex: .3;
+    }
+    .networkPage__results{
+        flex: .7;
+    }
+}
+@media screen and (min-width:995px) {
+    .networkPage{
+        max-width: var(--max-width-body);
+    }
+    /* .network__page__right, */
+    .network__page__left{
+        flex: 0.25;
+        /* border: 1px solid red; */
+    }
+    /* .network__page__right{
+        flex: 0.27;
+    } */
+    .networkPage__results {
+        flex: 0.7;
+        /* border: 1px solid red; */
+    }
+}
+/* 
+.network__page__left,
+.network__page__right{
+    flex: 0.2;
+    border: 1px solid red;
+}
+.network__page__right{
+    flex: 0.27;
+}
+.feed {
+    flex: 0.52;
+    border: 1px solid red;
+} */

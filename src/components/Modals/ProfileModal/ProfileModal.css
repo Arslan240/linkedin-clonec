@@ -1,0 +1,78 @@
+.profile__modal__form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile__modal__form > div{
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+#profile__country,#profile__city, #experience__modal__location{ 
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  margin-top: .3rem;
+}
+
+.asterik{
+  color: red;
+}
+
+.profile__modal__country__picker{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.modal__location__title{
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+  display: inline-block;
+}
+
+.profile__add__activities{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  cursor: pointer;
+  color: var(--linkedin-blue);
+  font-size: .95rem;
+  font-weight: 600;
+  width: fit-content;
+  padding-inline: .5rem;
+  padding-block: .4rem;
+  border-radius: .3rem;
+}
+.profile__add__activities:hover{
+  background-color: var(--linkedin-blue-lighter);
+}
+.profile__add__activities:disabled{
+  cursor: not-allowed;
+}
+
+.profile__modal__activity__item{
+  display: flex;
+  justify-content: space-between;
+  border: var(--container-border);
+  border-radius: 4px;
+  padding-block: .3rem;
+  padding-inline: .5rem;
+  color: var(--text-gray-light);
+  margin-bottom: .5rem;
+  /* font-weight: 600; */
+}
+
+.profile__modal__additional__actitivites{
+  font-size: 1rem;
+  font-weight: 600;
+  margin-block-start: 1rem;
+  margin-block-end: .5rem;
+}

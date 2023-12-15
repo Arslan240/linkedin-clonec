@@ -1,0 +1,20 @@
+.profile__icon{
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    
+    transition: all 0.5s;
+    cursor: pointer; 
+}
+
+.profile__icon:active{
+    transform: scale(0.9);
+}
+
+.profile__icon > img {
+    height: inherit;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}

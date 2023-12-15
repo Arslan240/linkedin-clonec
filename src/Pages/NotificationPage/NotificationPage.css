@@ -1,0 +1,195 @@
+.notif__page__left{
+    padding-block: 1rem;
+    margin-bottom: .7rem;
+    height: fit-content;
+}
+.notif__page__left__settings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+}
+
+.notif__page__left__manage__title,
+.manage__title__button{
+    font-weight: 600;
+}
+
+.notif__page__left__manage__title {
+    font-size: 1rem;
+}
+
+.manage__title__button{
+    color: var(--text-gray);
+}
+
+.notif__page__results{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    transition: all 0.2s;
+}
+
+.notif__page__result__filters{
+    display: flex;
+    gap: .7rem;
+    padding-block: .8rem;
+    /* padding-inline: var(--container-padding-inline); */
+    flex-wrap: wrap;
+}
+
+.notif__page__result__filter{
+    color: var(--text-gray);
+    border: var(--container-border);
+    padding: .4rem .9rem;
+    font-weight: 600;
+    border-radius: 19px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notif__page__result__filter:hover{
+    background-color: var(--search-item-type-hover-color);
+}
+
+.notif__page__result__filter.active{
+    background-color: #30734a;
+    color: white;
+    border: none;
+}
+
+.notif__page__actual__notifs__container{
+    padding-inline: 0;
+}
+
+.notif__page__results__notification{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: .8rem;
+    padding-inline: var(--container-padding-inline);
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.notification__left__section,
+.notification__inner__left__section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+.notification__left__section{
+    gap: 1.5rem;
+}
+
+.notif__page__results__notification.not_read{
+    background-color: var(--linkedin-blue-lighter);
+}
+.notif__page__results__notification.not_read:hover{
+    background-color: var(--linkedin-blue-light);
+}
+.notif__page__results__notification.read:hover{
+    background-color: var(--search-item-type-hover-color);
+}
+
+.notif__page__notif__details{
+    max-width: 80%;
+}
+
+.notif__page__actions__container{
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    transition: all 1s;
+}
+
+.notif__page__notif__actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.notif__page__notif__bold{
+    font-weight: 600;
+}
+.notification__dot.not_read {
+    height: 10px;
+    width: 10px;
+    background-color: var(--linkedin-blue);
+    border-radius: 50%;
+}
+
+.notif__page__three__dots{
+    padding: .5rem;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+.notif__page__three__dots:hover{
+    background-color: rgb(246, 246, 246);
+}
+
+.no_notifs{
+    padding-inline: var(--container-padding-inline);
+    padding-block: .5rem;
+}
+
+.connections__page__remove__options{
+    transition: all 0.3s;
+}
+
+.display {
+    z-index: 1000;
+    opacity: 1;
+}
+
+.display__none{
+    opacity: 0;
+    z-index: -1000;   
+}
+
+.notifications__page__delete__notification{
+    padding-block: .5rem;
+    padding-inline: var(--container-padding-inline);
+    cursor: pointer;
+    font-weight: 600;
+}
+.notifications__page__delete__notification:hover{
+    background-color: var(--search-item-type-hover-color);
+}
+
+@media screen and (min-width:600px){
+    .notif__page__results__notification:first-child{
+        border-top-left-radius: var(--notification-border-radius);
+    }
+    .notif__page__results__notification:first-child{
+        border-top-right-radius: var(--notification-border-radius);
+    }
+    
+    .notif__page__results__notification:last-child{
+        border-bottom-left-radius: var(--notification-border-radius);
+    }
+    .notif__page__results__notification:last-child{
+        border-bottom-right-radius: var(--notification-border-radius);
+    }
+}
+@media screen and (min-width:800px){
+    .notif__page__left__manage__title{
+        margin-bottom: .5rem;
+    }
+    .notif__page__left__settings{
+        display: block;
+    }
+}
+
+@media screen and (min-width: 995px){
+    .notif__page__left {
+        flex: .2;
+    }
+    .notif__page__results{
+        flex: .55;
+    }
+    .notif__page__notif__details{
+        max-width: 75%;
+    }
+}

@@ -1,0 +1,31 @@
+.profile__detail__section{
+  margin-top: 1rem;
+  padding-block: .8rem;
+}
+
+.profile__page__activity__top__section{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.activity__options{
+  display: flex;
+  gap: .5rem;
+}
+
+.activity__title{
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+.profile__page__actual__activity.no__activity__media{
+  flex-direction: column-reverse;
+  gap: 0;
+  
+}
+.profile__page__actual__activity.no__activity__media .activity__title{
+  margin-bottom: 0;
+}
+

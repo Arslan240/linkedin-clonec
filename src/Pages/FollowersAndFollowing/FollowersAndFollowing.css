@@ -1,0 +1,65 @@
+.follow__page__left{
+    border: var(--container-border);
+    border-radius: var(--container-border-radius);
+    background-color: white;
+}
+
+.f__section{
+    border-bottom: var(--container-border);
+    padding-inline: var(--container-padding-inline);
+}
+
+.follow__page__title{
+    padding-block: .5rem;
+}
+
+.follow__page__options{
+    display: flex;
+    gap: 1rem;
+    padding-inline: var(--container-padding-inline);
+    color: var(--text-gray);
+}
+
+.follow__page__option{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-inline: .5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.follow__page__option.active{
+    color: green;
+    border-bottom: 2px solid green;
+}
+
+.follow__page__stats{
+    padding-block: .3rem;
+}
+
+.follow__page__users{
+    padding-inline: var(--container-padding-inline);
+}
+
+.follow__page__null__message{
+    padding-block: 1rem;
+    color: var(--error-color);
+}
+
+@media screen and (min-width: 855px) {
+    /* .networkPage{
+        max-width: var(--max-width-body-tablet);
+        display: flex;
+    } */
+    .follow__page__left{
+        flex: .7;
+    }
+}
+@media screen and (min-width: 995px) {
+    /* .networkPage{
+        max-width: var(--max-width-body);
+    } */
+    /* .network__page__right, */
+    .follow__page__left{
+        flex: .7;
+    }
+}

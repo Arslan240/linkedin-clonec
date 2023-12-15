@@ -1,0 +1,21 @@
+.modal__input{
+  padding: .4rem;
+  font-size: .9rem;
+  border-radius: 6px;
+  border: 1px solid var(--text-gray-light);
+  cursor: pointer;
+  width: 100%;
+}
+
+.input__required {
+  border: 1.8px solid rgb(236, 77, 77);
+}
+.input_valid{
+  border: 1px solid var(--text-gray-light);
+}
+
+.modal__input{
+  padding: .4rem;
+  font-size: .9rem;
+}
+
