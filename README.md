@@ -1,3 +1,3 @@
 
 ## Page Demo
-https://linkedin-clonec.vercel.app/login
+https://linkedin-clonec.vercel.app/
