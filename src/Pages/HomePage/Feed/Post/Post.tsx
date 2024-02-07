@@ -7,13 +7,15 @@ import { MdRepeat } from 'react-icons/md'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { BiLike, BiSolidLike } from "react-icons/bi"
 import { useState, useRef, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import { auth, MEDIA_TYPE_IMAGES, MEDIA_TYPE_DOC, MEDIA_TYPE_VIDEO } from '../../../../firebase/firebase-config.js'
 import { useComments } from '../../../../Context/CommentContext.jsx'
 import { FLAG_REPLY } from '../../../../Context/CommentContext.jsx'
 
 // DocViewer
-import DocViewer, { DocViewerRenderers,PDFRenderer } from "@cyntler/react-doc-viewer";
+// import DocViewer, { DocViewerRenderers,PDFRenderer } from "@cyntler/react-doc-viewer";
+import DocViewer from "@cyntler/react-doc-viewer";
 
 const large_icon = 25;
 
@@ -43,11 +45,11 @@ const Post: React.FC<PostProps> = ({ postID, userID, component = "HomePage", pos
     const initialRenderRef = useRef(true);
     const { commentsLength, isLoading } = useComments()
 
-    function currentPathMatchesPostUrl() {
-        const location = useLocation();
-        const postUrlPattern = `/in/${userID}/activity/post/${postID}`;
-        return location.pathname.startsWith(postUrlPattern);
-    }
+    // function currentPathMatchesPostUrl() {
+    //     const location = useLocation();
+    //     const postUrlPattern = `/in/${userID}/activity/post/${postID}`;
+    //     return location.pathname.startsWith(postUrlPattern);
+    // }
 
     useEffect(() => {
         if (initialRenderRef.current) {
@@ -136,27 +138,6 @@ const Post: React.FC<PostProps> = ({ postID, userID, component = "HomePage", pos
                     mediaType === MEDIA_TYPE_IMAGES ? (
                         <img className='post__image__view' src={mediaURL} alt="Uploaded Image" />
                     ) : mediaType === MEDIA_TYPE_DOC ? (
-                        // TODO: PDF not shown properly work on it.
-                        // <Document file={mediaURL} externalLinkTarget={mediaURL}>
-                        //     <Page pageNumber={1}/>
-                        // </Document>
-                        // <iframe
-                        //     title="Document Viewer"
-                        //     src={mediaURL}
-                        //     width="80%"
-                        //     height="250"
-                        //     className="post__media__image__viewer"
-                        // />
-                        // <object 
-                        //     data={mediaURL} 
-                        //     type="application/pdf" 
-                        //     width="100%" 
-                        //     height="250"
-                        //     className="post__media__image__viewer"
-                        // >
-                        //      <p>Alternative text - include a link <a href={mediaURL}>to the PDF!</a></p>
-                        // </object>
-
                         <DocViewer 
                             documents={[{uri: mediaURL}]} 
                             config={{
@@ -198,7 +179,8 @@ const Post: React.FC<PostProps> = ({ postID, userID, component = "HomePage", pos
                     <span className="media__action__text">Like</span>
                 </div>
                 <Link
-                    to={currentPathMatchesPostUrl() ? "" : `/in/${userID}/activity/post/${postID}`}
+                    // to={currentPathMatchesPostUrl() ? "" : `/in/${userID}/activity/post/${postID}`}
+                    to={""}
                     className="media__action">
                     <FaRegCommentDots className="media__action__icon" size={large_icon} />
                     <span className="media__action__text">Comment</span>
@@ -212,7 +194,7 @@ const Post: React.FC<PostProps> = ({ postID, userID, component = "HomePage", pos
                     <span className="media__action__text">Send</span>
                 </div>
             </div>
-            <AddComment component="PostPage" postID={postID} isLoading={isLoading} />
+            <AddComment component="PostPage" postID={postID} isLoading={isLoading}/>
             <CommentContainer postID={postID} userID={userID} />
         </div>
         // </CommentContextProvider>
@@ -237,11 +219,7 @@ const icon_size = 17
 const like_icon_color = "var(--linkedin-blue)"
 const PostReactions = ({ commentsLength, likes }) => {
 
-    // Maybe use this component to show comments too
-
-
-
-    if (commentsLength > 0 && likes.length > 0) {
+    if (commentsLength > 0 && likes.length > 0) { //render both comments and likes 
         return (
             <div className="post__reaction_details">
                 <div className="reactions">
@@ -253,7 +231,7 @@ const PostReactions = ({ commentsLength, likes }) => {
                 </div>
             </div>
         );
-    } else if (commentsLength <= 0 && likes.length > 0) {
+    } else if (commentsLength <= 0 && likes.length > 0) { // only render likes
         return (
             <div className="post__reaction_details">
                 <div className="reactions">
@@ -262,7 +240,7 @@ const PostReactions = ({ commentsLength, likes }) => {
                 </div>
             </div>
         );
-    } else if (commentsLength > 0 && likes.length <= 0) {
+    } else if (commentsLength > 0 && likes.length <= 0) { //only render comments
         return (
             <div className="post__reaction_details">
                 <div className="comments">
@@ -322,7 +300,7 @@ type AddCommentProps = {
     flag?: FLAG_REPLY | null,
     commID?: string | null,
     postID: string | null,
-    isLoading?: boolean
+    isLoading?: boolean,
 }
 
 const AddComment: React.FC<AddCommentProps> = ({ component, flag = null, commID = null, postID = null, isLoading = false }) => {
