@@ -12,6 +12,9 @@ import { auth, MEDIA_TYPE_IMAGES, MEDIA_TYPE_DOC, MEDIA_TYPE_VIDEO } from '../..
 import { useComments } from '../../../../Context/CommentContext.jsx'
 import { FLAG_REPLY } from '../../../../Context/CommentContext.jsx'
 
+// DocViewer
+import DocViewer, { DocViewerRenderers,PDFRenderer } from "@cyntler/react-doc-viewer";
+
 const large_icon = 25;
 
 // type ComponentProps = {
@@ -154,14 +157,24 @@ const Post: React.FC<PostProps> = ({ postID, userID, component = "HomePage", pos
                         //      <p>Alternative text - include a link <a href={mediaURL}>to the PDF!</a></p>
                         // </object>
 
-                        <embed
-                            src={mediaURL}
-                            type="application/pdf"
-                            width="100%"
-                            height="300"
-                            className="post__media__pdf__viewer"
-
+                        <DocViewer 
+                            documents={[{uri: mediaURL}]} 
+                            config={{
+                                header: {
+                                    disableFileName: true,
+                                    disableHeader: true,
+                                },
+                            }}
                         />
+
+                        // <embed
+                        //     src={mediaURL}
+                        //     type="application/pdf"
+                        //     width="100%"
+                        //     height="300"
+                        //     className="post__media__pdf__viewer"
+
+                        // />
                     ) : mediaType === MEDIA_TYPE_VIDEO ? (
                         <video controls width="100%" height="300">
                             <source src={mediaURL} type="video/mp4" />

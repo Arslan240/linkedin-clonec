@@ -114,6 +114,11 @@
     width: 100%;
     height: 300px;
 }
+
+/* Doc Viewer Header Bar */
+#header-bar{
+    display: none;
+}
 .post__media__actions{
     display: flex;
     justify-content: space-around;
