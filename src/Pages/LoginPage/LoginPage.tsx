@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 // import { useSelector, useDispatch } from 'react-redux'
 import { useAuth } from '../../Context/AuthContext.jsx'
 import "./LoginPage.css"
-import { loginSchema } from './loginSchema'
+import { loginSchema } from './loginSchema.js'
 import { useFormik } from 'formik'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Navigate, Route, useLocation, useNavigate } from 'react-router-dom'
-import { SignupHeader } from '../../components'
+import { SignupHeader } from '../../components/index.js'
 // import { addIntialOnboardingAtSignup } from '../../firebase/utils'
+// Inside your component function...
+
 
 
 const initialValues = {
@@ -33,6 +35,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [demoLogin, setDemoLogin] = useState(false)
   const navigate = useNavigate()
 
   // Returns if the user is already logged in and redirects to feed route
@@ -86,6 +89,21 @@ const LoginPage = () => {
     }
   }, [firebaseError])
 
+  useEffect(() => {
+    if (demoLogin){
+      const demoUsername = "islamibhai@gmail.com"
+      const demoPassword = "asdf!1A"
+
+      setFieldValue('login__email', demoUsername)
+      setFieldValue('login__password', demoPassword)
+      setFieldTouched('login__password',true)
+      setFieldTouched('login__password',true)
+      setDemoLogin(false)
+    }
+  },[demoLogin])
+
+
+
   const handleLogin = async (values) => {
     // setDummyState(dummyState+1);
     const { login__email: email, login__password: password } = values
@@ -98,10 +116,10 @@ const LoginPage = () => {
     try {
       await signUpWithEmailAndPassword({ email, password })
       // await addIntialOnboardingAtSignup();
-      if(!firebaseError){
+      if (!firebaseError) {
         navigate('/onboarding/name');
       }
-    } catch (error) { 
+    } catch (error) {
     }
   }
 
@@ -118,78 +136,94 @@ const LoginPage = () => {
     // }
   }
 
-  const { values, errors, touched, isValid, dirty, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
+  const formik = useFormik({
     initialValues,
     validationSchema: loginSchema,
     onSubmit: submitHandler
   })
 
+  const { values, errors, touched, isValid, dirty, handleBlur, handleChange, handleSubmit, isSubmitting,setFieldValue, setFieldTouched } = formik
 
+  if(demoLogin){
+    console.log(touched)
+    console.log(isValid)
+    console.log(values)
+    console.log(dirty)
+  }
 
   return (
     <div className="login__page">
       <SignupHeader />
-      <div className="login__inputsContainer">
-        <h1 className='login__title'>Make the most of your professional life</h1>
-        <form className='login__form' onSubmit={handleSubmit}
-        >
-          <div>
-            <label htmlFor="login__email">Email</label>
-            <input
-              value={values.login__email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='email'
-              id='login__email'
-              className={errors.login__email && touched.login__email ? "input__error" : ''}
-            />
-            {errors.login__email && touched.login__email &&
-            // @ts-ignore
-              <p className='login__error'>{errors.login__email}</p>
-            }
-          </div>
-          <div>
-            <label htmlFor="login__password">Password</label>
-            <div className="login__showPassword">
+        <div className="login__inputsContainer">
+          <h1 className='login__title'>Make the most of your professional life</h1>
+          <form className='login__form' onSubmit={handleSubmit}
+          >
+            <div>
+              <label htmlFor="login__email">Email</label>
               <input
-                value={values.login__password}
+                value={values.login__email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                type={`${showPassword ? "text" : "password"}`}
-                id="login__password"
-                className={errors.login__password && touched.login__password ? "input__error" : ''}
+                type='email'
+                id='login__email'
+                className={errors.login__email && touched.login__email ? "input__error" : ''}
               />
-              {showPassword ?
-                <AiFillEye onClick={() => setShowPassword(!showPassword)} className='login__icon' size={icon_size} />
-                : <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='login__icon' size={icon_size} />
+              {errors.login__email && touched.login__email &&
+                // @ts-ignore
+                <p className='login__error'>{errors.login__email}</p>
+              }
+            </div>
+            <div>
+              <label htmlFor="login__password">Password</label>
+              <div className="login__showPassword">
+                <input
+                  value={values.login__password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type={`${showPassword ? "text" : "password"}`}
+                  id="login__password"
+                  className={errors.login__password && touched.login__password ? "input__error" : ''}
+                />
+                {showPassword ?
+                  <AiFillEye onClick={() => setShowPassword(!showPassword)} className='login__icon' size={icon_size} />
+                  : <AiFillEyeInvisible onClick={() => setShowPassword(!showPassword)} className='login__icon' size={icon_size} />
+                }
+              </div>
+
+              {errors.login__password && touched.login__password &&
+                // @ts-ignore
+                <p className='login__error'>{errors.login__password}</p>
               }
             </div>
 
-            {errors.login__password && touched.login__password &&
-            // @ts-ignore
-              <p className='login__error'>{errors.login__password}</p>
-            }
-          </div>
+            <button
+              disabled={!dirty}
+              type='submit'
+              className='login__submit__button'
+            >
+              {signIn ? "Sign In" : "Sign up"}
+            </button>
 
-          <button
-            disabled={!isValid || !dirty}
-            type='submit'
-            className='login__submit__button'
-          >
-            {signIn ? "Sign In" : "Sign up"}
-          </button>
-
-          {showError && <p className='login__error'>{errorMessage}</p>}
+            {showError && <p className='login__error'>{errorMessage}</p>}
 
 
-          <span className='login__details'>{signIn ? "New to LinkedIn? " : "Already have an account? "}
-            <span className='login__state' onClick={() => !isSubmitting && setSignIn(signIn ? false : true)}>
-              {signIn ? "Join Now" : "Sign In"}
+            <span className='login__details'>{signIn ? "New to LinkedIn? " : "Already have an account? "}
+              <span className='login__state' onClick={() => !isSubmitting && setSignIn(signIn ? false : true)}>
+                {signIn ? "Join Now" : "Sign In"}
+              </span>
             </span>
-          </span>
-        </form>
-
-      </div>
+            <button
+              className='login__submit__button'
+              type='button'
+              onClick={() => {
+                console.log("Demo login")
+                setDemoLogin(true)
+              }}
+            >
+              Demo Login
+            </button>
+          </form>
+        </div>
     </div>
   )
 }
