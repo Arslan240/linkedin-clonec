@@ -6,8 +6,8 @@ import { HiHome } from 'react-icons/hi'
 import { BsPeopleFill } from 'react-icons/bs'
 import { IoMdNotifications } from 'react-icons/io'
 import { IoSearchSharp } from 'react-icons/io5'
-import useNotificationsStore from "../../hooks/useNotificationsStore"
 import { useSearch } from "../../Context/SearchContext"
+import { useNotifications } from "../../Context/NotificationsContext"
 
 const Header = () => {
   const {setSearchLoading} = useSearch();
@@ -15,12 +15,19 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState("");
   const searchRef = useRef(null);
   const navigate = useNavigate();
-  const {notifications, fetchNotifications} = useNotificationsStore();
+  const {notifications,noNotifs} = useNotifications()
 
 
-  const handleSearchIconClick = () => {
-    console.log("icon clicked")
-    setShowSearch(!showSearch)
+  const handleSearchIconClick = (event) => {
+    if (showSearch) {
+      // Check if the click occurred within the header__search div or its children
+      const isClickInsideSearch = event.target.closest('.header__search');
+      if (!isClickInsideSearch) {
+        setShowSearch(false);
+      }
+    }else{
+      setShowSearch(true)
+    }
   }
 
   const handleSubmit = async (event) => {
@@ -33,13 +40,10 @@ const Header = () => {
       navigate(`/search?query=${searchValue}`)
     }
   }
-  console.log("render")
+  // console.log("render")
 
   console.log(notifications)
-  // 
-  useEffect(() => {
-    fetchNotifications()
-  },[])
+
 
   useEffect(() => {
     function showSearchEvent(){
@@ -69,13 +73,13 @@ const Header = () => {
         // @ts-ignore
         header__right.style.display = "block";
       }
-// @ts-ignore
+    // @ts-ignore
     }else if(header__right.style.display === "none"){
 
     }
   }, [showSearch])
 
-  console.log(showSearch)
+  // console.log(showSearch)
 
   return (
     <>
@@ -120,4 +124,14 @@ const Header = () => {
   )
 }
 export default Header
+
+
+
+
+
+
+
+
+
+
 
