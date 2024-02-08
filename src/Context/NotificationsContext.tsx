@@ -16,8 +16,8 @@ const NotificationsContext = createContext<NotificationsStore>()
 const NotificationsContextProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [noNotifs, setNoNotifs] = useState(false);
-  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  // const [updateLoading, setUpdateLoading] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   
 
   
@@ -29,7 +29,7 @@ const NotificationsContextProvider = ({ children }) => {
         setNoNotifs(true);
         return;
       }
-      setNotifications(data);
+      setNotifications(data.sort((a,b) => b.timeStamp - a.timeStamp));
       setNoNotifs(false);
     } catch (error) {
       console.error('Error fetching notifications:', error);
@@ -38,32 +38,36 @@ const NotificationsContextProvider = ({ children }) => {
 
   const deleteNotification = async (notifID) => {
     try {
-      setIsDeleteLoading(true);
+      setDeleteLoading(true)
       await DeleteANotification(notifID);
     } catch (error) {
+      console.log(error)
     }finally {
-      setIsDeleteLoading(true);
+      setDeleteLoading(false)
     }
   }
 
   const updateNotificationReadState = async (notifID) => {
     try {
-      // setUpdateLoading(true);
+      setUpdateLoading(true);
+      // console.log("call for update notification")
       await UpdateNotificationReadState(notifID);
     } catch (error) {
     }finally{
-      // setUpdateLoading(false);
+      setUpdateLoading(false);
     }
   }
 
+  // console.log("notification context")
+
   useEffect(() => {
     fetchNotifications();
-  }, [])
+  }, [updateLoading,deleteLoading])
 
-
+  console.log(notifications)
   return (
     // @ts-ignore
-    <NotificationsContext.Provider value={{ notifications, noNotifs, updateNotificationReadState, deleteNotification, isDeleteLoading, setIsDeleteLoading }}>
+    <NotificationsContext.Provider value={{ notifications, noNotifs, updateNotificationReadState, deleteNotification }}>
       {children}
     </NotificationsContext.Provider>
   )
