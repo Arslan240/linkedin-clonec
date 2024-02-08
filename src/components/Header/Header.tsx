@@ -15,7 +15,7 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState("");
   const searchRef = useRef(null);
   const navigate = useNavigate();
-  const {notifications,noNotifs} = useNotifications()
+  const {notifications} = useNotifications()
 
 
   const handleSearchIconClick = (event) => {
