@@ -233,7 +233,7 @@ const ProfilePagePost = ({ post }) => {
                 }
                 <div>
                     <span className="profile__page__activity__description">{post.postDesc}</span>
-                    {post.postDesc !== "" && <a className="profile__page__show__more__link profile__text__light ">...show more</a>}
+                    {post.postDesc !== "" && <a className="profile__page__show__more__link profile__text__light "><br/> ...show more</a>}
                 </div>
             </div>
             <div className="profile__page__post__reactions profile__text__light profile__page__font__small">

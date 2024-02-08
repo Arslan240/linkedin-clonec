@@ -167,7 +167,8 @@
     height: 120px;
 }
 .profile__page__activity__description{
-    max-width: 245px;
+    max-width: 200px;
+    height: 100%;
 }
 .profile__page__post__reactions{
     display: flex;
