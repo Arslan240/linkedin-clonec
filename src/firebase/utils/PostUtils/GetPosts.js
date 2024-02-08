@@ -1,10 +1,15 @@
 import {collection, doc, getDoc, getDocs, orderBy, query, where} from 'firebase/firestore'
 import {auth, db, POSTS_COLL_NAME} from '../../firebase-config.js'
+import { GetConnections } from '../UserUtils/GetConnections.js'
 
-export const GetPosts = async (userID = auth.currentUser.uid) => {
+export const GetPosts = async (includeConns = false,userID = auth.currentUser.uid) => {
+    console.log(includeConns, userID)
     try {
+        var connectionIds = []
+        if (includeConns) {connectionIds = (await GetConnections()).map((item) => item.userID)}
         const q = query(collection(db,POSTS_COLL_NAME),
-            where("userID","==", userID),
+            where("userID", "in", [userID, ...connectionIds]),
+            // where("userID","==",userID),
             orderBy("timeStamp", 'desc')
         )
         const querySnapShot = await getDocs(q);
@@ -16,6 +21,8 @@ export const GetPosts = async (userID = auth.currentUser.uid) => {
         querySnapShot.forEach((doc) => {
             results.push({docID: doc.id, ...doc.data()})
         })
+        console.log(connectionIds)
+        console.log(results)
         return results.length > 0 ? results : null;
     } catch (error) {
         throw error;

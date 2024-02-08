@@ -3,6 +3,7 @@ import CreatePost from "./CreatePost/CreatePost"
 import Post from "./Post/Post"
 import { useEffect, useState } from "react"
 import { GetPosts } from "../../../firebase/utils"
+import { auth } from "../../../firebase/firebase-config.js"
 // import { useLocation } from "react-router-dom"
 import { SpinnerCircularFixed } from "spinners-react"
 import { CommentContextProvider } from '../../../Context/CommentContext.jsx'
@@ -24,7 +25,7 @@ const Feed = () => {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const results = await GetPosts();
+        const results = await GetPosts(true);
         if(!results) {
           setNoPosts(true);
           return;
