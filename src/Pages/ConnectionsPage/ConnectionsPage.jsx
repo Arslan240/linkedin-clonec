@@ -10,8 +10,6 @@ import { auth } from "../../firebase/firebase-config"
 const ConnectionsPage = () => {
     const [connections, setConnections] = useState([]);
     const [firebaseError, setFirebaseError] = useState("");
-    const [showConnectionsOptions, setShowConnectionsOptions] = useState(false)
-    const [removeConnectionLoading, setRemoveConnectionLoading] = useState(false);
     const [noConnections, setNoConnections] = useState(false);
 
 
@@ -57,10 +55,10 @@ const ConnectionsPage = () => {
                             <>
                                 <User component={"connections"} details={conn}  
                                     handleRemoveConnection={handleRemoveConnection} 
-                                    showConnectionsOptions={showConnectionsOptions} 
-                                    removeConnectionLoading={removeConnectionLoading} 
-                                    setShowConnectionsOptions={setShowConnectionsOptions}
-                                    setRemoveConnectionLoading={setRemoveConnectionLoading}
+                                    // showConnectionsOptions={showConnectionsOptions} 
+                                    // setShowConnectionsOptions={setShowConnectionsOptions}
+                                    // removeConnectionLoading={removeConnectionLoading} 
+                                    // setRemoveConnectionLoading={setRemoveConnectionLoading}
                                     noConnections={noConnections}
                                 />
                             </>

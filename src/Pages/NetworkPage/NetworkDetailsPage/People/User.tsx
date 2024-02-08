@@ -34,12 +34,8 @@ const User: React.FC<{
     component: string,
     // CONNECTIONS PAGE
     connection_page?: string,
-    removeConnectionLoading: boolean,
-    showConnectionsOptions: boolean
-    handleRemoveConnection?: (userID:string) => void,
-    setShowConnectionsOptions?: (value:boolean) => void,
-    setRemoveConnectionLoading?: (value:boolean) => void,
-}> = ({ details, component, connection_page, handleRemoveConnection, setShowConnectionsOptions, setRemoveConnectionLoading, showConnectionsOptions, removeConnectionLoading }) => {
+    handleRemoveConnection?: (userID:string) => void
+}> = ({ details, component, connection_page, handleRemoveConnection }) => {
     // const {status} = sent || {status: ""};
     // const [status, setSentState] = useState(status)
     let userID;
@@ -59,6 +55,8 @@ const User: React.FC<{
     const [mobileSize, setMobileSize] = useState(true);
 
     // CONNECTIONS Page
+    const [showConnectionsOptions, setShowConnectionsOptions] = useState(false)
+    const [removeConnectionLoading, setRemoveConnectionLoading] = useState(false);
     const [referenceElement, setReferenceElement] = useState();
     const [popperElement, setPopperElement] = useState();
     let { styles, attributes } = usePopper(referenceElement, popperElement, { placement: "bottom-end" });
