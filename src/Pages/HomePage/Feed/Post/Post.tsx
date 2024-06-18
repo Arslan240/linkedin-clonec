@@ -15,7 +15,7 @@ import { FLAG_REPLY } from '../../../../Context/CommentContext.jsx'
 
 // DocViewer
 // import DocViewer, { DocViewerRenderers,PDFRenderer } from "@cyntler/react-doc-viewer";
-import DocViewer from "@cyntler/react-doc-viewer";
+// import DocViewer from "@cyntler/react-doc-viewer";
 
 const large_icon = 25;
 
@@ -138,24 +138,24 @@ const Post: React.FC<PostProps> = ({ postID, userID, component = "HomePage", pos
                     mediaType === MEDIA_TYPE_IMAGES ? (
                         <img className='post__image__view' src={mediaURL} alt="Uploaded Image" />
                     ) : mediaType === MEDIA_TYPE_DOC ? (
-                        <DocViewer 
-                            documents={[{uri: mediaURL}]} 
-                            config={{
-                                header: {
-                                    disableFileName: true,
-                                    disableHeader: true,
-                                },
-                            }}
-                        />
-
-                        // <embed
-                        //     src={mediaURL}
-                        //     type="application/pdf"
-                        //     width="100%"
-                        //     height="300"
-                        //     className="post__media__pdf__viewer"
-
+                        // <DocViewer 
+                        //     documents={[{uri: mediaURL}]} 
+                        //     config={{
+                        //         header: {
+                        //             disableFileName: true,
+                        //             disableHeader: true,
+                        //         },
+                        //     }}
                         // />
+
+                        <embed
+                            src={mediaURL}
+                            type="application/pdf"
+                            width="100%"
+                            height="300"
+                            className="post__media__pdf__viewer"
+
+                        />
                     ) : mediaType === MEDIA_TYPE_VIDEO ? (
                         <video controls width="100%" height="300">
                             <source src={mediaURL} type="video/mp4" />
