@@ -33,10 +33,10 @@ const NotificationPage = () => {
       setFilteredNotifs(notifications.filter(item => item.type === NOTIF_TYPE_POST_LIKED));
     }
   }, [filter])
-  
+
   useEffect(() => {
     setFilteredNotifs(notifications);
-  },[notifications])
+  }, [notifications])
 
 
   return (
@@ -68,15 +68,15 @@ const NotificationPage = () => {
           {filteredNotifs.length > 0
             ? filteredNotifs.map((notif, index) => (
               <Notification key={index} index={index} notification={notif} />
-            )) 
-            : noNotifs 
-                ? (
-                  <div className="no_notifs">There are no notifications to show.</div>
-                ) 
+            ))
+            : noNotifs
+              ? (
+                <div className="no_notifs">There are no notifications to show.</div>
+              )
               : filter === FILTER_COMMENTS || filter === FILTER_LIKES && filteredNotifs.length === 0  // if the filter is changed and there are not notifications for that filter we show no notifications, otherwise we show loading state.
-                ? <div className="no_notifs">There are no notifications to show.</div> 
+                ? <div className="no_notifs">There are no notifications to show.</div>
                 : <div className="feed__loading__container"><SpinnerCircularFixed color="var(--linkedin-blue)" size={40} /></div>}
-              
+
         </div>
       </div>
 
@@ -101,8 +101,10 @@ const Notification = ({ index, notification }) => {
   const { type, docID, postID, read, timeStamp, } = notification;
   const [isRead, setIsRead] = useState(read);
   const [senderName, setSenderName] = useState("");
+  const [deleteLoading,setDeleteLoading] = useState(false)
 
-  const { updateNotificationReadState, deleteNotification, isDeleteLoading } = useNotifications();
+  const { updateNotificationReadState, deleteNotification} = useNotifications();
+  console.log("Delete Loading:", deleteLoading)
 
   async function fetchUserName(userID) {
     try {
@@ -110,6 +112,18 @@ const Notification = ({ index, notification }) => {
       return { docID: userID, ...user.data() };
     } catch (error) {
       return null;
+    }
+  }
+
+  async function callDeleteNotification(docID){
+    try {
+      setDeleteLoading(true)
+      await deleteNotification(docID)
+    } catch (error) {
+      console.error("Unable to delete")
+    }finally{
+      setDeleteLoading(false)
+      setShowOptions(false)
     }
   }
 
@@ -130,7 +144,7 @@ const Notification = ({ index, notification }) => {
   useEffect(() => {
     async function fetch() {
       let userID;
-  
+
       if (type === NOTIF_TYPE_CONNECT_REQ) {
         userID = notification.senderID;
       } else if (
@@ -141,50 +155,50 @@ const Notification = ({ index, notification }) => {
       ) {
         userID = notification.userID;
       }
-  
+
       if (!userID) return;
-  
+
       const result = await fetchUserName(userID);
       if (!result) return;
-  
+
       const { firstName, lastName } = result;
       setSenderName(`${firstName} ${lastName}`);
     }
-  
+
     fetch();
   }, [type, notification]);
-  
+
   return (
     <>
       <div className={`notif__page__results__notification ${isRead ? "read" : "not_read"}`} onClick={() => setIsRead(true)}>
         <div className="notification__left__section">
           <div className="notification__inner__left__section">
             <div className={`notification__dot ${isRead ? "" : "not_read"}`}></div>
-            <ProfileIcon height={50} name={senderName} imageURL=""/>
+            <ProfileIcon height={50} name={senderName} imageURL="" />
           </div>
           {type === NOTIF_TYPE_CONNECT_REQ &&
             <Link to='/mynetwork/'>
-              <NotifDiv senderName={senderName} text={" sent you a connection request"}/>
+              <NotifDiv senderName={senderName} text={" sent you a connection request"} />
             </Link>
           }
           {type === NOTIF_TYPE_CONNECT_REQ_ACCEPTED &&
             <Link to='/mynetwork/connections'>
-              <NotifDiv senderName={senderName} text={" accepted your connection request"}/>
+              <NotifDiv senderName={senderName} text={" accepted your connection request"} />
             </Link>
           }
           {type === NOTIF_TYPE_POST_LIKED &&
             <Link to={`/in/${auth.currentUser.uid}/activity/post/${postID}`}>
-              <NotifDiv senderName={senderName} text={" liked your post. Click to goto your post."}/>
+              <NotifDiv senderName={senderName} text={" liked your post. Click to goto your post."} />
             </Link>
           }
           {type === NOTIF_TYPE_COMMENT_ADDED_TO_POST &&
             <Link to={`/in/${auth.currentUser.uid}/activity/post/${postID}`}>
-              <NotifDiv senderName={senderName} text={" commented on your post. Click to goto your post."}/>
+              <NotifDiv senderName={senderName} text={" commented on your post. Click to goto your post."} />
             </Link>
           }
           {type === NOTIF_TYPE_COMMENT_REPLIED_TO_COMMENT &&
             <Link to={`/in/${auth.currentUser.uid}/activity/post/${postID}`}>
-              <NotifDiv senderName={senderName} text={" replied to a comment on your post. Click to goto your post."}/>
+              <NotifDiv senderName={senderName} text={" replied to a comment on your post. Click to goto your post."} />
             </Link>
           }
         </div>
@@ -193,14 +207,16 @@ const Notification = ({ index, notification }) => {
           <div className={`notif__page__notif__actions ${index}`} >
             <span>{getDateFromTimestamp(timeStamp)}</span>
             <div ref={setReferenceElement}>
-              <BsThreeDots
-                size={icon_size}
-                className={icon_className}
-                onClick={() => setShowOptions(!showOptions)} />
+              {deleteLoading
+                ? <SpinnerCircularFixed size={25} color="var(--linkedin-blue)" />
+                : <BsThreeDots
+                  size={icon_size}
+                  className={icon_className}
+                  onClick={() => setShowOptions(!showOptions)} />
+              }
             </div>
           </div>
 
-          {isDeleteLoading && <SpinnerCircularFixed size={25} color="var(--linkedin-blue)" />}
         </div>
       </div>
 
@@ -213,7 +229,7 @@ const Notification = ({ index, notification }) => {
         >
           <div
             className="notifications__page__delete__notification"
-            onClick={() => deleteNotification(docID)}
+            onClick={() => callDeleteNotification(docID)}
           >
             <span>Delete Notification</span>
           </div>
@@ -223,9 +239,9 @@ const Notification = ({ index, notification }) => {
   )
 }
 
-const NotifDiv = ({senderName,text}) => {
+const NotifDiv = ({ senderName, text }) => {
   return (
-    <div className="notif__page__notif__details" onClick={() => console.log("NotifDiv Clicked")}> 
+    <div className="notif__page__notif__details" onClick={() => console.log("NotifDiv Clicked")}>
       {capitalize(senderName)}<span className="notif__page__notif__bold">{text}</span>
     </div>
   )
