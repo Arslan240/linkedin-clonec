@@ -183,27 +183,27 @@ const Notification = ({ index, notification }) => {
           </div>
           {type === NOTIF_TYPE_CONNECT_REQ &&
             <Link to='/mynetwork/'>
-              <div className="notif__page__notif__details"> <span className="notif__page__notif__bold">{capitalize(senderName)}</span> sent you a connection request</div>
+              <NotifDiv senderName={senderName} text={" sent you a connection request"}/>
             </Link>
           }
           {type === NOTIF_TYPE_CONNECT_REQ_ACCEPTED &&
             <Link to='/mynetwork/connections'>
-              <div className="notif__page__notif__details"> <span className="notif__page__notif__bold">{capitalize(senderName)}</span> accepted your connection request</div>
+              <NotifDiv senderName={senderName} text={" accepted your connection request"}/>
             </Link>
           }
           {type === NOTIF_TYPE_POST_LIKED &&
             <Link to={`/in/${auth.currentUser.uid}/activity/post/${postID}`}>
-              <div className="notif__page__notif__details"> <span className="notif__page__notif__bold">{capitalize(senderName)}</span> liked your post. Click to goto your post.</div>
+              <NotifDiv senderName={senderName} text={" liked your post. Click to goto your post."}/>
             </Link>
           }
           {type === NOTIF_TYPE_COMMENT_ADDED_TO_POST &&
             <Link to={`/in/${auth.currentUser.uid}/activity/post/${postID}`}>
-              <div className="notif__page__notif__details"> <span className="notif__page__notif__bold">{capitalize(senderName)}</span> commented on your post. Click to goto your post.</div>
+              <NotifDiv senderName={senderName} text={" commented on your post. Click to goto your post."}/>
             </Link>
           }
           {type === NOTIF_TYPE_COMMENT_REPLIED_TO_COMMENT &&
             <Link to={`/in/${auth.currentUser.uid}/activity/post/${postID}`}>
-              <div className="notif__page__notif__details"> <span className="notif__page__notif__bold">{capitalize(senderName)}</span> replied to a comment on your post. Click to goto your post.</div>
+              <NotifDiv senderName={senderName} text={" replied to a comment on your post. Click to goto your post."}/>
             </Link>
           }
         </div>
@@ -239,5 +239,13 @@ const Notification = ({ index, notification }) => {
         </div>
       </Portal>
     </>
+  )
+}
+
+const NotifDiv = ({senderName,text}) => {
+  return (
+    <div className="notif__page__notif__details" onClick={() => console.log("NotifDiv Clicked")}> 
+      {capitalize(senderName)}<span className="notif__page__notif__bold">{text}</span>
+    </div>
   )
 }
