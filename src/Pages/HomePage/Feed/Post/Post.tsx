@@ -13,9 +13,6 @@ import { auth, MEDIA_TYPE_IMAGES, MEDIA_TYPE_DOC, MEDIA_TYPE_VIDEO } from '../..
 import { useComments } from '../../../../Context/CommentContext.jsx'
 import { FLAG_REPLY } from '../../../../Context/CommentContext.jsx'
 
-// DocViewer
-// import DocViewer, { DocViewerRenderers,PDFRenderer } from "@cyntler/react-doc-viewer";
-// import DocViewer from "@cyntler/react-doc-viewer";
 
 const large_icon = 25;
 
