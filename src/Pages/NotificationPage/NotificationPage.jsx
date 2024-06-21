@@ -127,52 +127,33 @@ const Notification = ({ index, notification }) => {
     }
   }, [isRead])
 
-
   useEffect(() => {
     async function fetch() {
+      let userID;
+  
       if (type === NOTIF_TYPE_CONNECT_REQ) {
-        const { senderID } = notification;
-        if (!senderID) return;
-        const result = await fetchUserName(senderID);
-        if (!result) return;
-        const { firstName, lastName } = result;
-        setSenderName(`${firstName} ${lastName}`);
+        userID = notification.senderID;
+      } else if (
+        type === NOTIF_TYPE_CONNECT_REQ_ACCEPTED ||
+        type === NOTIF_TYPE_POST_LIKED ||
+        type === NOTIF_TYPE_COMMENT_ADDED_TO_POST ||
+        type === NOTIF_TYPE_COMMENT_REPLIED_TO_COMMENT
+      ) {
+        userID = notification.userID;
       }
-      else if (type === NOTIF_TYPE_CONNECT_REQ_ACCEPTED) {
-        const { userID } = notification;
-        if (!userID) return;
-        const result = await fetchUserName(userID);
-        if (!result) return;
-        const { firstName, lastName } = result;
-        setSenderName(`${firstName} ${lastName}`);
-      }
-      else if (type === NOTIF_TYPE_POST_LIKED) {
-        const { userID } = notification;
-        if (!userID) return;
-        const result = await fetchUserName(userID);
-        if (!result) return;
-        const { firstName, lastName } = result;
-        setSenderName(`${firstName} ${lastName}`);
-      }
-      else if (type === NOTIF_TYPE_COMMENT_ADDED_TO_POST) {
-        const { userID } = notification;
-        if (!userID) return;
-        const result = await fetchUserName(userID)
-        if (!result) return;
-        const { firstName, lastName } = result;
-        setSenderName(`${firstName} ${lastName}`);
-      }
-      else if(type === NOTIF_TYPE_COMMENT_REPLIED_TO_COMMENT){
-        const {userID} = notification;
-        const result = await fetchUserName(userID)
-        const { firstName, lastName } = result;
-        setSenderName(`${firstName} ${lastName}`);
-      }
+  
+      if (!userID) return;
+  
+      const result = await fetchUserName(userID);
+      if (!result) return;
+  
+      const { firstName, lastName } = result;
+      setSenderName(`${firstName} ${lastName}`);
     }
+  
     fetch();
-  }, [index.type])
-
-
+  }, [type, notification]);
+  
   return (
     <>
       <div className={`notif__page__results__notification ${isRead ? "read" : "not_read"}`} onClick={() => setIsRead(true)}>
