@@ -182,7 +182,7 @@ const Notification = ({ index, notification }) => {
             <ProfileIcon height={50} name={senderName} imageURL=""/>
           </div>
           {type === NOTIF_TYPE_CONNECT_REQ &&
-            <Link to='/mynetwork/connections'>
+            <Link to='/mynetwork/'>
               <div className="notif__page__notif__details"> <span className="notif__page__notif__bold">{capitalize(senderName)}</span> sent you a connection request</div>
             </Link>
           }
