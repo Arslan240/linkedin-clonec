@@ -62,7 +62,9 @@ const NotificationsContextProvider = ({ children }) => {
   // console.log("notification context")
 
   useEffect(() => {
-    fetchNotifications(user?.uid);
+    if(user){
+      fetchNotifications(user.uid);
+    }
   }, [user,updateLoading,deleteLoading])
 
   console.log(notifications)
