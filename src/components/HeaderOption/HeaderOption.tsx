@@ -18,7 +18,7 @@ export default function HeaderOption({ icon: Icon, title, to, notifications = fa
         <div className="headerOption__notiContainer">
           {Icon && <Icon className="headerOption__icon" size={25} />}
 
-          {notifications && <div className="headerOption__notification">
+          {notifLength > 0 && <div className="headerOption__notification">
             <span>{notifLength}</span>
           </div>}
 
