@@ -15,7 +15,7 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState("");
   const searchRef = useRef(null);
   const navigate = useNavigate();
-  const {notifications} = useNotifications()
+  const {notifications,unreadNotifsLen} = useNotifications()
 
 
   const handleSearchIconClick = (event) => {
@@ -107,7 +107,7 @@ const Header = () => {
               <HeaderOption icon={BsPeopleFill} title="My Network" to="/mynetwork" />
               {/* <HeaderOption icon={BiSolidBriefcase} title="Jobs" to="/jobs" /> */}
               {/* <HeaderOption icon={AiFillMessage} title="Messaging" to="/messages" notifications={true} /> */}
-              <HeaderOption icon={IoMdNotifications} title="Notifications" to="/notifications" notifications={notifications.length > 0} notifLength={notifications.length}/>
+              <HeaderOption icon={IoMdNotifications} title="Notifications" to="/notifications" notifications={notifications.length > 0} notifLength={unreadNotifsLen}/>
               {/* TODO: Add the actual username and createa  dynamic route */}
               {/* <Link to={'/me'}> */}
                 <ProfileOption />

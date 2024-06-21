@@ -6,6 +6,7 @@ import {useAuth} from './AuthContext'
 interface NotificationsStore {
   notifications: [];
   noNotifs: boolean;
+  unreadNotifsLen: number;
   fetchNotifications: () => Promise<void>;
   deleteNotification: (notifID: string) => Promise<void>;
   updateNotificationReadState: (notifID: string) => Promise<void>;
@@ -18,6 +19,7 @@ const NotificationsContext = createContext<NotificationsStore>()
 const NotificationsContextProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [noNotifs, setNoNotifs] = useState(false);
+  const [unreadNotifsLen,setunreadNotifsLen] = useState(notifications.length)
   const [updateLoading, setUpdateLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   
@@ -59,6 +61,7 @@ const NotificationsContextProvider = ({ children }) => {
     }
   }
 
+  console.log(updateLoading)
   // console.log("notification context")
 
   useEffect(() => {
@@ -67,10 +70,18 @@ const NotificationsContextProvider = ({ children }) => {
     }
   }, [user,updateLoading,deleteLoading])
 
+  // calculate length of unread notifications
+  useEffect(() => {
+    const unreadNotifs = notifications.filter((item) => !item.read);
+    setunreadNotifsLen(unreadNotifs.length);
+  }, [notifications]);
+
+
   console.log(notifications)
+  
   return (
     // @ts-ignore
-    <NotificationsContext.Provider value={{ notifications, noNotifs, updateNotificationReadState, deleteNotification }}>
+    <NotificationsContext.Provider value={{ notifications, noNotifs, unreadNotifsLen,updateNotificationReadState, deleteNotification }}>
       {children}
     </NotificationsContext.Provider>
   )
@@ -79,5 +90,8 @@ export default NotificationsContextProvider
 
 export const useNotifications = () => {
   const notifications = useContext(NotificationsContext)
+  if (notifications === undefined) {
+    throw new Error('useNotifications must be used within a NotificationsContextProvider');
+  }
   return notifications;
 }
