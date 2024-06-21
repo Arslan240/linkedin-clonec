@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { DeleteANotification, GetNotifications, UpdateNotificationReadState } from "../firebase/utils";
+import {useAuth} from './AuthContext'
 // import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 interface NotificationsStore {
@@ -13,18 +14,18 @@ interface NotificationsStore {
 // @ts-ignore
 const NotificationsContext = createContext<NotificationsStore>()
 
+
 const NotificationsContextProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [noNotifs, setNoNotifs] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   
+  const {user} = useAuth()
 
-  
-
-  const fetchNotifications = async () => {
+  const fetchNotifications = async (uid) => {
     try {
-      const data = await GetNotifications();
+      const data = await GetNotifications(uid);
       if (data.length <= 0) {
         setNoNotifs(true);
         return;
@@ -61,8 +62,8 @@ const NotificationsContextProvider = ({ children }) => {
   // console.log("notification context")
 
   useEffect(() => {
-    fetchNotifications();
-  }, [updateLoading,deleteLoading])
+    fetchNotifications(user?.uid);
+  }, [user,updateLoading,deleteLoading])
 
   console.log(notifications)
   return (
