@@ -10,8 +10,7 @@ type HeaderOptionProps = {
   notifLength?: number;
 }
 
-export default function HeaderOption({ icon: Icon, title, to, notifications = false, notifLength }: HeaderOptionProps) {
-  console.log(notifLength)
+export default function HeaderOption({ icon: Icon, title, to, notifLength }: HeaderOptionProps) {
   return (
     <NavLink to={to} >
       <div className={`headerOption`}>
