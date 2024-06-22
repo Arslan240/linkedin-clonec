@@ -34,8 +34,9 @@ const User: React.FC<{
     component: string,
     // CONNECTIONS PAGE
     connection_page?: string,
-    handleRemoveConnection?: (userID:string) => void
-}> = ({ details, component, connection_page, handleRemoveConnection }) => {
+    handleRemoveConnection?: (userID:string) => void,
+    setDeletedSuccessfully: (state:any) => void
+}> = ({ details, component, connection_page, handleRemoveConnection, setDeletedSuccessfully }) => {
     // const {status} = sent || {status: ""};
     // const [status, setSentState] = useState(status)
     let userID;
@@ -62,14 +63,21 @@ const User: React.FC<{
     let { styles, attributes } = usePopper(referenceElement, popperElement, { placement: "bottom-end" });
 
     const handleRemoveConnectionClick = async () => {
-        let { userID: uid } = details;
+        if (removeConnectionLoading) return;
+
+        let { userID: uid } = details
+
+
         try {
+            setRemoveConnectionLoading(true)
             await handleRemoveConnection?.(uid)
         } catch (error) {
             throw error;
         }
         finally{
-            setRemoveConnectionLoading?.(false);
+            setRemoveConnectionLoading(false)
+            setShowConnectionsOptions(false)
+            setDeletedSuccessfully(state => !state)
         }
     }
 
@@ -165,7 +173,7 @@ const User: React.FC<{
 
 
     const handleIgnore = () => {
-
+        console.log("ignore called")
     }
 
     const handleMessage = () => {
@@ -257,11 +265,11 @@ const User: React.FC<{
                         className="connections__page__remove__connection"
                         onClick={handleRemoveConnectionClick}
                     >
-                        <span>Remove Connection</span>
+                        
                         <span>
                             {removeConnectionLoading
                                 ? (<SpinnerCircularFixed size={25} color="var(--linkedin-blue)" />)
-                                : ""}
+                                : <span>Remove Connection</span>}
                         </span>
                     </div>
                 </div>

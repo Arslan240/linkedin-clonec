@@ -11,16 +11,18 @@ const ConnectionsPage = () => {
     const [connections, setConnections] = useState([]);
     const [firebaseError, setFirebaseError] = useState("");
     const [noConnections, setNoConnections] = useState(false);
+    const [deletedSuccessfully, setDeletedSuccessfully] = useState(false)
 
 
     const handleRemoveConnection = async (userID) => {
         try {
-            setRemoveConnectionLoading(true);
+            // setRemoveConnectionLoading(true);
             await RemoveConnection(userID);
         } catch (error) {
-        } finally {
-            setShowConnectionsOptions(false);
-        }
+        } 
+        // finally {
+        //     setShowConnectionsOptions(false);
+        // }
 
     }
 
@@ -38,7 +40,7 @@ const ConnectionsPage = () => {
             }
         }
         fetchConnections()
-    },[])
+    },[deletedSuccessfully])
 
     
     
@@ -60,6 +62,7 @@ const ConnectionsPage = () => {
                                     // removeConnectionLoading={removeConnectionLoading} 
                                     // setRemoveConnectionLoading={setRemoveConnectionLoading}
                                     noConnections={noConnections}
+                                    setDeletedSuccessfully={setDeletedSuccessfully}
                                 />
                             </>
                         )
